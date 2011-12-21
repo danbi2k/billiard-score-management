@@ -1,6 +1,4 @@
 #labels Phase-Implementation
-#초기 화면 개발
-
 = 초기 접속 화면 =
 
 처음에 화면에 접속했을 때 출력해야 하는 화면을 개발한다.
