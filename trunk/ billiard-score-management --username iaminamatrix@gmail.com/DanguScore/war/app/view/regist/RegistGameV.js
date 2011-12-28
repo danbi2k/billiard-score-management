@@ -1,11 +1,11 @@
 Ext.define('Dangu.view.regist.RegistGameV', {
 	extend: 'Ext.grid.Panel',
-	plugins: 'Ext.grid.plugin.RowEditing',
+	plugins: Ext.create('Ext.grid.plugin.RowEditing'),
 	alias: 'widget.gamelist',
 	title: 'Game Scroes',
 	layout:'fit',
-	store:'regist.RegistGameS',
-	iconCls: 'icon-user',
+	stores:'regist.RegistGameS',
+//	iconCls: 'icon-user',
 	columns: [{
 		text: 'Gamer 1',
 		flex: 1,
@@ -46,19 +46,19 @@ Ext.define('Dangu.view.regist.RegistGameV', {
 		field: {
 			xtype: 'combo'
 		}
-	},],
+	}],
 	dockedItems: [{
 		xtype: 'toolbar',
 		items: [{
 			text: 'Add',
-			iconCls: 'icon-add',
+//			iconCls: 'icon-add',
 			handler: function(){
 				store.insert(0, new RegistGameM());
 				rowEditing.startEdit(0, 0);
 			}
 		}, '-', {
 			text: 'Delete',
-			iconCls: 'icon-delete',
+//			iconCls: 'icon-delete',
 			itemId: 'delete',
 			disabled: true,
 			handler: function(){
