@@ -8,6 +8,14 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<servlet-name>DanguScore</servlet-name>
 		<servlet-class>kr.inamatrix.danguscore.DanguScoreServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>ManagementGamer</servlet-name>
+		<servlet-class>kr.inamatrix.danguscore.gamers.ManagementGamersServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ManagementGamer</servlet-name>
+		<url-pattern>/managementgamer</url-pattern>
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>DanguScore</servlet-name>
 		<url-pattern>/danguscore</url-pattern>
