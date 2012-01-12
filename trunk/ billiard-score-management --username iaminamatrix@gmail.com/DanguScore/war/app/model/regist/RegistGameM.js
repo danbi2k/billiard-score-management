@@ -8,10 +8,10 @@ Ext.define('Dangu.model.regist.RegistGameM', {
     	type: 'string'
     }, {
     	name: 'starttime',
-    	type: 'int'
+    	type: 'string'
     }, {
     	name: 'endtime',
-    	type: 'int'
+    	type: 'string'
     }, {
     	name: 'result',
     	type: 'string'
