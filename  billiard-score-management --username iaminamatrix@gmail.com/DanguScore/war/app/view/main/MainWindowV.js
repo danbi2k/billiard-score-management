@@ -18,9 +18,9 @@ Ext.define('Dangu.view.main.MainWindowV', {
 	autoShow: true,
 	initComponent : function() {
 		console.log('Dangu.view.main.MainWindow initComponent : function() start!!');
-		this.items=[{xtype:'mainwindowbutton', text:this.htmlText('∞Ê±‚µÓ∑œ'), action: 'registgame'}, 
-		            {xtype:'mainwindowbutton', text:this.htmlText('∞Ê±‚ ¡∂»∏'), action: 'retrievegame'},
-		            {xtype:'mainwindowbutton', text:this.htmlText('ªÁøÎ¿⁄ µÓ∑œ'), action: 'registgamer'}];
+		this.items=[{xtype:'mainwindowbutton', text:this.htmlText('Í≤ΩÍ∏∞ Îì±Î°ù'), action: 'registgame'}, 
+		            {xtype:'mainwindowbutton', text:this.htmlText('Í≤ΩÍ∏∞ Ï°∞Ìöå'), action: 'retrievegame'},
+		            {xtype:'mainwindowbutton', text:this.htmlText('ÏÑ†Ïàò Îì±Î°ù'), action: 'registgamer'}];
 		console.log('Dangu.view.main.MainWindow initComponent : function() end!!');
 		this.callParent(arguments);
 	},

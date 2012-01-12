@@ -1,7 +1,9 @@
 Ext.define('Dangu.view.regist.RegistGameV', {
 	extend: 'Ext.grid.Panel',
-	plugins: Ext.create('Ext.grid.plugin.RowEditing'),
-	requires: ['Dangu.view.regist.GamerListCombo'],
+	plugins: Ext.create('Ext.grid.plugin.CellEditing', {
+		clicksToEdit:1
+	}),
+	requires: ['Dangu.view.regist.GamerListCombo', 'Dangu.view.regist.GameInformation'],
 	alias: 'widget.gamelist',
 	title: 'Game Scroes',
 	layout:'fit',
@@ -12,41 +14,26 @@ Ext.define('Dangu.view.regist.RegistGameV', {
 		flex: 1,
 		sortable: true,
 		dataIndex: 'gamer1',
-		field:{
-			xtype:'gamerlistcombo'
-		}
 	}, {
 		text: 'Gamer 2',
 		flex: 1,
 		sortable: true,
 		dataIndex: 'gamer2',
-		field: {
-			xtype: 'gamerlistcombo'
-		}
 	}, {
 		text: 'Start Time',
 		flex: 1,
 		sortable: true,
 		dataIndex: 'starttime',
-		field: {
-			xtype: 'textfield'
-		}
 	}, {
 		text: 'End Time',
 		flex: 1,
 		sortable: true,
 		dataIndex: 'endtime',
-		field: {
-			xtype: 'textfield'
-		}
 	}, {
 		text: 'Result',
 		flex: 1,
 		sortable: true,
-		dataIndex: 'result',
-		field: {
-			xtype: 'combo'
-		}
+		dataIndex: 'result'
 	}],
 	dockedItems: [{
 		xtype: 'toolbar',
@@ -77,13 +64,16 @@ Ext.define('Dangu.view.regist.RegistGameV', {
 			action: 'backMain'
 		}]
 	}],
+	
 	initComponent : function() {
 		console.log('Dangu.view.regist.RegistGame initComponent : function() start!!');
-//		var deletebutton = this.getDockedComponent('delete');
-//		this.getSelectionModel().on('selectionchange', function(selModel, selections){
-//			deletebutton.setDisabled(selections.length === 0);
-//	    });
-		console.log('Dangu.view.regist.RegistGame initComponent : function() end!!');
 		this.callParent(arguments);
+		this.getSelectionModel().on('selectionchange', this.onSelectChange, this);
+		console.log('Dangu.view.regist.RegistGame initComponent : function() end!!');
+	},
+	
+	onSelectChange: function(selModel, selections){
+		console.log('onSelectChange');
+		this.down('#delete').setDisabled(selections.length === 0);
 	}
 });

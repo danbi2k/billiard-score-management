@@ -1,6 +1,6 @@
 Ext.define('Dangu.store.regist.RegistGameS', {
     extend: 'Ext.data.Store',
-    model: 'Dangu.store.regist.RegistGameM',
+    model: 'Dangu.model.regist.RegistGameM',
     
     proxy:{
     	type:'ajax',

@@ -1,15 +1,12 @@
 Ext.define('Dangu.store.regist.GamerListS', {
     extend: 'Ext.data.Store',
-    model: 'Dangu.store.regist.GamerListM',
-    
+    model: 'Dangu.model.regist.GamerListM',
     proxy:{
     	type:'ajax',
-    	url:'/managementgamer',
-    	method:'POST',
     	reader:{
+    		data:'data/gamerlist.json',
     		type:'json',
-    		root:'gamerlist',
-    		totalProperty: 'totalCount'
+    		root:'gamerlist'
     	}
     }
 });
