@@ -4,7 +4,7 @@ Ext.define('Dangu.model.regist.RegistGameM', {
     	name: 'gamer1',
     	type: 'string',
     }, {
-    	name: 'game2',
+    	name: 'gamer2',
     	type: 'string'
     }, {
     	name: 'starttime',
@@ -15,5 +15,5 @@ Ext.define('Dangu.model.regist.RegistGameM', {
     }, {
     	name: 'result',
     	type: 'string'
-    }]
+    }],
 });
