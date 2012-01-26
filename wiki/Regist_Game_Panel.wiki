@@ -1,4 +1,4 @@
-#labels Featured,Phase-Requirements,Phase-Design
+#labels Deprecated,Phase-Requirements,Phase-Design
 # 경기 등록 화면
 
 = Introduction =
