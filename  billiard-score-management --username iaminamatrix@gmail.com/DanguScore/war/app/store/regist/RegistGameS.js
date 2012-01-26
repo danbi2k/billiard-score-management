@@ -3,13 +3,17 @@ Ext.define('Dangu.store.regist.RegistGameS', {
     model: 'Dangu.model.regist.RegistGameM',
     
     proxy:{
-    	type:'ajax',
+    	type:'rest',
     	url:'/managementgamer',
     	method:'POST',
-    	reader:{
+    	writer:{
     		type:'json',
-    		root:'gamerlist',
-    		totalProperty: 'totalCount'
+    		root:'gamerlist'
     	}
+//    	reader:{
+//    		type:'json',
+//    		root:'gamerlist',
+//    		totalProperty: 'totalCount'
+//    	}
     }
 });

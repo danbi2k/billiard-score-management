@@ -47,8 +47,35 @@ Ext.define('Dangu.controller.regist.RegistGameC', {
 		}
 	},
 	
-	registGame: function(){
-		console.log('Regist Game button clicked !!');
+	registGame: function(button){
+//		console.log('Regist Game button clicked !!');
+		var gridPanel = button.up('grid'),
+		gridstore = gridPanel.getStore();
+		var arr = new Array();
+		var records = gridstore.getRange();
+		for(var i = 0; i < records.length; i++){
+			arr.push(records[i].data);
+		}
+		var builder = Ext.encode(arr);
+		console.log(builder);
+	    
+		Ext.Ajax.request({
+		    url: '/managementgamer',
+		    type:'json',
+		    params: {
+		        action:'create',
+		        values: builder
+		    },
+		    success: function(response){
+		        var text = response.responseText;
+		        console.log(text);
+		        Ext.MSG.alert('success');
+		        // process server response here
+		    }, 
+		    fail : function(response){
+		    	Ext.MSG.alert('fail');
+		    }
+		});
 	},
 	
 	backMain: function(){
@@ -62,14 +89,15 @@ Ext.define('Dangu.controller.regist.RegistGameC', {
 	},
 	
 	saveGame: function(button){
-		   console.log('clicked the Save button');
-		   var win = button.up('window'),
-		   form = win.down('form'),
-		   record = form.getRecord(),
-		   values = form.getValues();
-		   
-		   record.set(values);
-		   win.close();
-//		   this.getUsersStore().sync();
-	   }
+		console.log('clicked the Save button');
+		var win = button.up('window'),
+		form = win.down('form'),
+		record = form.getRecord(),
+		values = form.getValues();
+
+		record.set(values);
+		win.close();
+//		this.getUsersStore().sync();
+	}
+	
 });
