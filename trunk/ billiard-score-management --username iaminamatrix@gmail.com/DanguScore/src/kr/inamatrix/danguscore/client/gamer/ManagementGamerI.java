@@ -1,22 +1,22 @@
 /**
  * 
  */
-package kr.inamatrix.danguscore.client.login;
+package kr.inamatrix.danguscore.client.gamer;
 
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 /**
- * Title: LoginService.java<br>
+ * Title: RegistGamerI.java<br>
  * Description: <br>
  * Copyright: Copyright(c) 2012 Inamatrix ALL Rights Reserved<br>
  * 
  * @author Jonghwa, Lee
  * @version 1.0
- * @created 2012. 1. 26.
- * @modified 2012. 1. 26.
+ * @created 2012. 1. 27.
+ * @modified 2012. 1. 27.
  */
-@RemoteServiceRelativePath("login")
-public interface LoginServiceI extends RemoteService {
-    boolean login(String name, String password);
+@RemoteServiceRelativePath("management")
+public interface ManagementGamerI extends RemoteService {
+    
 }

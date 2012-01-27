@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import com.extjs.gxt.ui.client.Style.HorizontalAlignment;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.SelectionListener;
+import com.extjs.gxt.ui.client.widget.MessageBox;
 import com.extjs.gxt.ui.client.widget.Viewport;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.FormButtonBinding;
@@ -15,6 +16,7 @@ import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.FormPanel.LabelAlign;
 import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.layout.CenterLayout;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -31,16 +33,30 @@ import com.google.gwt.user.client.ui.Widget;
 public class LoginServiceForm {
     private static final Logger logger = Logger.getLogger(LoginServiceForm.class.getName());
     
+    private static LoginServiceForm instance;
     private FormPanel _form;
     
     private TextField<String> _name;
     private TextField<String> _password;
     
-    private Button _login = new Button("로그인");
-    private Button _regist = new Button("선수등록");
+    private Button _login;
+    private Button _regist;
     
-    LoginServiceForm() {
+    private LoginServiceDelegate _loginServiceDelegate = new LoginServiceDelegate();
+    
+    private LoginServiceForm() {
         initialize();
+    }
+    
+    public static final void newInstance() {
+        getInstance();
+    }
+    
+    public static final LoginServiceForm getInstance() {
+        if (instance == null) {
+            instance = new LoginServiceForm();
+        }
+        return instance;        
     }
     
     private void initialize() {
@@ -109,7 +125,10 @@ public class LoginServiceForm {
             _login.addSelectionListener(new SelectionListener<ButtonEvent>() {
                 @Override
                 public void componentSelected(ButtonEvent ce) {
+                    GWT.log("login button clicked.");
                     logger.info("login button clicked.");
+                    _loginServiceDelegate.login(_name.getValue(), _password.getValue());
+                    MessageBox.alert("Login", "이름 또는 비밀번호가 틀립니다.", null);
                 }
             });
         }
@@ -127,5 +146,27 @@ public class LoginServiceForm {
             });
         }
         return _regist;
+    }
+
+    /**
+     * 
+     */
+    public void processLoginSuccess() {
+        _form.hide();
+        // TODO : show success message and change the page.
+    }
+
+    /**
+     * @param caught
+     */
+    public void showLoginErrorMessage(Throwable caught) {
+        // TODO Auto-generated method stub
+    }
+
+    /**
+     * 
+     */
+    public void showLoginFailed() {
+        MessageBox.alert("Login", "이름 또는 비밀번호가 틀립니다.", null);
     }
 }
