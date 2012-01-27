@@ -22,7 +22,7 @@ public class LoginServiceEntryPoint implements EntryPoint {
      */
     @Override
     public void onModuleLoad() {
-        new LoginServiceForm();
+        LoginServiceForm.newInstance();
     }
     
 }

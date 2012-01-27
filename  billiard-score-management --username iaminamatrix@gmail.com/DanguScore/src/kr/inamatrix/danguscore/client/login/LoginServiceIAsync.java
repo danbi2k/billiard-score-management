@@ -16,11 +16,5 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
  * @modified 2012. 1. 26.
  */
 public interface LoginServiceIAsync {
-
-    /**
-     * @param textToServer
-     * @param asyncCallback
-     */
-    void greetServer(String textToServer, AsyncCallback<String> asyncCallback);
-    
+    void login(String name, String password, AsyncCallback<Boolean> callback);
 }
