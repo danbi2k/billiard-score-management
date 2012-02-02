@@ -7,6 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import kr.inamatrix.danguscore.client.login.LoginServiceI;
+import kr.inamatrix.danguscore.common.ResultI;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
@@ -28,12 +29,13 @@ public class LoginServiceC extends RemoteServiceServlet implements LoginServiceI
 
     private static final Logger logger = Logger.getLogger(LoginServiceC.class.getName());
     
-    private LoginDaoC _loginDao = new LoginDaoC();
+    private LoginJdoDaoC _loginDao = new LoginJdoDaoC();
+    
     /* (non-Javadoc)
      * @see kr.inamatrix.danguscore.client.login.LoginServiceI#login(java.lang.String, java.lang.String)
      */
     @Override
-    public boolean login(String name, String password) {
+    public ResultI login(String name, String password) {
         logger.log(Level.FINE, "login() name = " + name + ", password = " + password);
         return _loginDao.login(name, password);
     }

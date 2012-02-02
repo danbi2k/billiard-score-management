@@ -3,6 +3,9 @@
  */
 package kr.inamatrix.danguscore.client.login;
 
+
+import kr.inamatrix.danguscore.common.ResultI;
+
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
@@ -18,5 +21,5 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
  */
 @RemoteServiceRelativePath("login")
 public interface LoginServiceI extends RemoteService {
-    boolean login(String name, String password);
+    ResultI login(String name, String password);
 }

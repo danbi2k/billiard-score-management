@@ -13,14 +13,14 @@ package kr.inamatrix.danguscore.exceptions;
  * @created 2012. 1. 27.
  * @modified 2012. 1. 27.
  */
-public class ValueOutOfBoundException extends Exception{
+public class ValueIsOutOfRangeException extends Exception{
 
     /**
      * 
      */
     private static final long serialVersionUID = 1L;
     
-    public ValueOutOfBoundException(int min, int max) {
+    public ValueIsOutOfRangeException(int min, int max) {
         super("The value must be within the range. " + min + "<= value <=" + max);
     }
 }

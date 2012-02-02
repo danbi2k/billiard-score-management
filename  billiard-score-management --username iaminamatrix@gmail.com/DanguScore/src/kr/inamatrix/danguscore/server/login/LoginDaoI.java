@@ -3,6 +3,8 @@
  */
 package kr.inamatrix.danguscore.server.login;
 
+import kr.inamatrix.danguscore.common.ResultI;
+
 /**
  * Title: LoginDAO.java<br>
  * Description: <br>
@@ -14,5 +16,5 @@ package kr.inamatrix.danguscore.server.login;
  * @modified 2012. 1. 27.
  */
 public interface LoginDaoI {
-    boolean login(String name, String password);
+    ResultI login(String name, String password);
 }

@@ -3,6 +3,9 @@
  */
 package kr.inamatrix.danguscore.client.login;
 
+
+import kr.inamatrix.danguscore.common.ResultI;
+
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 /**
@@ -16,5 +19,5 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
  * @modified 2012. 1. 26.
  */
 public interface LoginServiceIAsync {
-    void login(String name, String password, AsyncCallback<Boolean> callback);
+    void login(String name, String password, AsyncCallback<ResultI> callback);
 }

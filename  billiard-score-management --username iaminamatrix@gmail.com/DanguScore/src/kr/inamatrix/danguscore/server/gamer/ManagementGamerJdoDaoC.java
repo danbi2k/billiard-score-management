@@ -3,7 +3,6 @@
  */
 package kr.inamatrix.danguscore.server.gamer;
 
-import kr.inamatrix.danguscore.client.gamer.ManagementGamerI;
 
 /**
  * Title: RegistGamerDaoC.java<br>
@@ -15,6 +14,6 @@ import kr.inamatrix.danguscore.client.gamer.ManagementGamerI;
  * @created 2012. 1. 27.
  * @modified 2012. 1. 27.
  */
-public class ManagementGamerDaoC implements ManagementGamerI{
+public class ManagementGamerJdoDaoC implements ManagementGamerDaoI{
     
 }

@@ -12,7 +12,7 @@ import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 import kr.inamatrix.danguscore.enums.GameResult;
-import kr.inamatrix.danguscore.exceptions.ValueOutOfBoundException;
+import kr.inamatrix.danguscore.exceptions.ValueIsOutOfRangeException;
 
 /**
  * Title: VsPlayerTableModel.java<br>
@@ -130,10 +130,10 @@ public class VsPlayerModel implements Serializable{
             return this;
         }
         
-        public VsPlayerModel build() throws ValueOutOfBoundException {
+        public VsPlayerModel build() throws ValueIsOutOfRangeException {
             if (_result == GameResult.WIN || _result == GameResult.LOSE) {
-                if (_result.getPlayTime() < 0 || _result.getPlayTime() > 25) {
-                    throw new ValueOutOfBoundException(0, 25);
+                if (_result.getPlayTime() <= 0 || _result.getPlayTime() > 25) {
+                    throw new ValueIsOutOfRangeException(0, 25);
                 }
             }
             return new VsPlayerModel(this);

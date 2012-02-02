@@ -3,6 +3,11 @@
  */
 package kr.inamatrix.danguscore.client.gamer;
 
+import kr.inamatrix.danguscore.common.ResultI;
+import kr.inamatrix.danguscore.models.GamerInfoModel;
+
+import com.google.gwt.user.client.rpc.AsyncCallback;
+
 /**
  * Title: RegistGamerIAsync.java<br>
  * Description: <br>
@@ -14,5 +19,10 @@ package kr.inamatrix.danguscore.client.gamer;
  * @modified 2012. 1. 27.
  */
 public interface ManagementGamerIAsync {
+    void checkIdDuplicate(String id, AsyncCallback<ResultI> callback);
+
+    void regiestGamer(GamerInfoModel model, AsyncCallback<ResultI> callback);
+
+    void updateGamer(AsyncCallback<ResultI> callback);
     
 }
