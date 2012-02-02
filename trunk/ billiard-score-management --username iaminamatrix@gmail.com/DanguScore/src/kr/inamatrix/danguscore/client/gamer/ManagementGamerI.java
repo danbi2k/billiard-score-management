@@ -3,6 +3,9 @@
  */
 package kr.inamatrix.danguscore.client.gamer;
 
+import kr.inamatrix.danguscore.common.ResultI;
+import kr.inamatrix.danguscore.models.GamerInfoModel;
+
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
@@ -18,5 +21,7 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
  */
 @RemoteServiceRelativePath("management")
 public interface ManagementGamerI extends RemoteService {
-    
+    ResultI checkIdDuplicate(String id);
+    ResultI regiestGamer(GamerInfoModel model);
+    ResultI updateGamer();
 }

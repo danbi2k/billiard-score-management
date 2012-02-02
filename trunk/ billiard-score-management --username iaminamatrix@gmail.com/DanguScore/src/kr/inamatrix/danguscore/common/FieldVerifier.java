@@ -1,4 +1,4 @@
-package kr.inamatrix.danguscore.shared;
+package kr.inamatrix.danguscore.common;
 
 /**
  * <p>

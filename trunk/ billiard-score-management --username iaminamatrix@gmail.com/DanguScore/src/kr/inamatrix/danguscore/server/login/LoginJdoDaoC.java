@@ -7,6 +7,8 @@ import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
 import kr.inamatrix.danguscore.common.DaoUtil;
+import kr.inamatrix.danguscore.common.ResultFactory;
+import kr.inamatrix.danguscore.common.ResultI;
 import kr.inamatrix.danguscore.models.GamerInfoModel;
 
 /**
@@ -19,16 +21,26 @@ import kr.inamatrix.danguscore.models.GamerInfoModel;
  * @created 2012. 1. 27.
  * @modified 2012. 1. 27.
  */
-public class LoginDaoC implements LoginDaoI {
+public class LoginJdoDaoC implements LoginDaoI {
     
     /* (non-Javadoc)
      * @see kr.inamatrix.danguscore.server.login.LoginDaoI#login(java.lang.String, java.lang.String)
      */
     @Override
-    public boolean login(String name, String password) {
+    public ResultI login(String name, String password) {
+        ResultI result = null;
         PersistenceManager pm = DaoUtil.getPersistentManager();
         Query query = pm.newQuery(GamerInfoModel.class);
-        query.setFilter("name==\' "+ name + "\'&& password==\'"+password+"\'");
-        return query.execute() != null;
+        query.setFilter("name==\' "+ name + "\' && password==\'"+password+"\'");
+        try {
+            result = query.execute() != null ? ResultFactory.createSucessResult(null) : ResultFactory.createFailureResult(null);
+            // TODO : if need a user session, make a user session in here.
+        } catch (Exception e) {
+            result = ResultFactory.createFailureResult(e.getMessage());
+        } finally {
+            pm.close();
+        }
+        
+        return result;
     }
 }

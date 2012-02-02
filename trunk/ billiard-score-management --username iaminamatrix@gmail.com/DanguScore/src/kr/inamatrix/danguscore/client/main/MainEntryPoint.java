@@ -1,32 +1,28 @@
 /**
  * 
  */
-package kr.inamatrix.danguscore.client.login;
-
-import kr.inamatrix.danguscore.client.main.MainViewport;
+package kr.inamatrix.danguscore.client.main;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.user.client.ui.RootPanel;
 
 /**
- * Title: LoginEntryPoint.java<br>
+ * Title: MainEntyPoint.java<br>
  * Description: <br>
  * Copyright: Copyright(c) 2012 Inamatrix ALL Rights Reserved<br>
  * 
  * @author Jonghwa, Lee
  * @version 1.0
- * @created 2012. 1. 26.
- * @modified 2012. 1. 26.
+ * @created 2012. 1. 30.
+ * @modified 2012. 1. 30.
  */
-public class LoginServiceEntryPoint implements EntryPoint {
+public class MainEntryPoint implements EntryPoint {
 
     /* (non-Javadoc)
      * @see com.google.gwt.core.client.EntryPoint#onModuleLoad()
      */
     @Override
     public void onModuleLoad() {
-//        LoginServiceForm.newInstance();
         RootPanel.get().add(MainViewport.getInstance());
     }
-    
 }

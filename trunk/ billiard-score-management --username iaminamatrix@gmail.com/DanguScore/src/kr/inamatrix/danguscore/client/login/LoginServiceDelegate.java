@@ -3,6 +3,9 @@
  */
 package kr.inamatrix.danguscore.client.login;
 
+
+import kr.inamatrix.danguscore.common.ResultI;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
@@ -17,14 +20,14 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
  * @modified 2012. 1. 26.
  */
 public class LoginServiceDelegate {
-    private LoginServiceIAsync loginService = GWT.create(LoginServiceI.class);
+    private LoginServiceIAsync _loginService = GWT.create(LoginServiceI.class);
     
     void login(String name, String password) {
-        loginService.login(name, password, new AsyncCallback<Boolean>() {
+        _loginService.login(name, password, new AsyncCallback<ResultI>() {
             
             @Override
-            public void onSuccess(Boolean result) {
-                if (result.booleanValue()) {
+            public void onSuccess(ResultI result) {
+                if (result.status()) {
                     LoginServiceForm.getInstance().processLoginSuccess();                    
                 } else {
                     LoginServiceForm.getInstance().showLoginFailed();
