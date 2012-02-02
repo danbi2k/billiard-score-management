@@ -6,10 +6,10 @@ package kr.inamatrix.danguscore.server.login;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
-import kr.inamatrix.danguscore.common.DaoUtil;
-import kr.inamatrix.danguscore.common.ResultFactory;
-import kr.inamatrix.danguscore.common.ResultI;
-import kr.inamatrix.danguscore.models.GamerInfoModel;
+import kr.inamatrix.danguscore.shared.common.DaoUtil;
+import kr.inamatrix.danguscore.shared.common.ResultFactory;
+import kr.inamatrix.danguscore.shared.common.ResultI;
+import kr.inamatrix.danguscore.shared.models.GamerInfoModel;
 
 /**
  * Title: LoginDaoC.java<br>

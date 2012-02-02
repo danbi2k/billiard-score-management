@@ -1,9 +1,9 @@
 /**
  * 
  */
-package kr.inamatrix.danguscore.common;
+package kr.inamatrix.danguscore.shared.common;
 
-import kr.inamatrix.danguscore.enums.Result;
+import kr.inamatrix.danguscore.shared.enums.Result;
 
 /**
  * Title: RetrieveResult.java<br>

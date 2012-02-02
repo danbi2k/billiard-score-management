@@ -1,7 +1,7 @@
 /**
  * 
  */
-package kr.inamatrix.danguscore.exceptions;
+package kr.inamatrix.danguscore.shared.exceptions;
 
 /**
  * Title: ValueOutOfBoundException.java<br>

@@ -7,7 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import kr.inamatrix.danguscore.client.login.LoginServiceI;
-import kr.inamatrix.danguscore.common.ResultI;
+import kr.inamatrix.danguscore.shared.common.ResultI;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 

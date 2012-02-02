@@ -1,7 +1,7 @@
 /**
  * 
  */
-package kr.inamatrix.danguscore.common;
+package kr.inamatrix.danguscore.shared.common;
 
 import java.util.ArrayList;
 import java.util.Collection;
