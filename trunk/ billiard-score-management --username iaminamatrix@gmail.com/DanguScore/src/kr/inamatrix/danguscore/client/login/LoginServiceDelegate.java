@@ -4,7 +4,7 @@
 package kr.inamatrix.danguscore.client.login;
 
 
-import kr.inamatrix.danguscore.common.ResultI;
+import kr.inamatrix.danguscore.shared.common.ResultI;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;

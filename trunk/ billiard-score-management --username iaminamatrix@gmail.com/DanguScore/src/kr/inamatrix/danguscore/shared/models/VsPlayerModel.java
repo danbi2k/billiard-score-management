@@ -1,7 +1,7 @@
 /**
  * 
  */
-package kr.inamatrix.danguscore.models;
+package kr.inamatrix.danguscore.shared.models;
 
 import java.io.Serializable;
 
@@ -11,8 +11,8 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
-import kr.inamatrix.danguscore.enums.GameResult;
-import kr.inamatrix.danguscore.exceptions.ValueIsOutOfRangeException;
+import kr.inamatrix.danguscore.shared.enums.GameResult;
+import kr.inamatrix.danguscore.shared.exceptions.ValueIsOutOfRangeException;
 
 /**
  * Title: VsPlayerTableModel.java<br>

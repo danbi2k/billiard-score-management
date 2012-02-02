@@ -3,7 +3,7 @@
  */
 package kr.inamatrix.danguscore.server.login;
 
-import kr.inamatrix.danguscore.common.ResultI;
+import kr.inamatrix.danguscore.shared.common.ResultI;
 
 /**
  * Title: LoginDAO.java<br>

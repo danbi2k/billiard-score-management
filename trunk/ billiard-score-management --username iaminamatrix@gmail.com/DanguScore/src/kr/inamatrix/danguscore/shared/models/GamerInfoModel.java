@@ -1,7 +1,7 @@
 /**
  * 
  */
-package kr.inamatrix.danguscore.models;
+package kr.inamatrix.danguscore.shared.models;
 
 import java.io.Serializable;
 

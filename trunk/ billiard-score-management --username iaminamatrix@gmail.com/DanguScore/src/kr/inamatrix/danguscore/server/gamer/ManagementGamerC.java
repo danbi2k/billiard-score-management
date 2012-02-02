@@ -4,8 +4,8 @@
 package kr.inamatrix.danguscore.server.gamer;
 
 import kr.inamatrix.danguscore.client.gamer.ManagementGamerI;
-import kr.inamatrix.danguscore.common.ResultI;
-import kr.inamatrix.danguscore.models.GamerInfoModel;
+import kr.inamatrix.danguscore.shared.common.ResultI;
+import kr.inamatrix.danguscore.shared.models.GamerInfoModel;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 

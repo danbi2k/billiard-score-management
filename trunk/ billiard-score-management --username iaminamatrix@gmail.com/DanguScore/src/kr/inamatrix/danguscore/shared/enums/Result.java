@@ -1,7 +1,7 @@
 /**
  * 
  */
-package kr.inamatrix.danguscore.enums;
+package kr.inamatrix.danguscore.shared.enums;
 
 /**
  * Title: Result.java<br>

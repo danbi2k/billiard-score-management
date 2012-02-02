@@ -3,8 +3,8 @@
  */
 package kr.inamatrix.danguscore.client.gamer;
 
-import kr.inamatrix.danguscore.common.ResultI;
-import kr.inamatrix.danguscore.models.GamerInfoModel;
+import kr.inamatrix.danguscore.shared.common.ResultI;
+import kr.inamatrix.danguscore.shared.models.GamerInfoModel;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
