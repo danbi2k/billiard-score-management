@@ -5,6 +5,7 @@ package kr.inamatrix.danguscore.client.main;
 
 import kr.inamatrix.danguscore.client.login.LoginServiceForm;
 
+import com.extjs.gxt.ui.client.widget.Component;
 import com.extjs.gxt.ui.client.widget.Viewport;
 import com.extjs.gxt.ui.client.widget.layout.CenterLayout;
 import com.google.gwt.user.client.ui.Widget;
@@ -32,7 +33,13 @@ public class MainViewport extends Viewport {
     }
 
     public void setView(Widget w) {
+        for(Component c : getItems()) {
+            c.hide();
+        }
+        removeAll();
         add(w);
+        w.setVisible(true);
+        afterRender();
     }
     
     public void changeView(Widget w) {

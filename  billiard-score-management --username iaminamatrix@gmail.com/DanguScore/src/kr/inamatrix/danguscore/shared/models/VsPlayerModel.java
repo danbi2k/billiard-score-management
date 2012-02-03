@@ -50,6 +50,10 @@ public class VsPlayerModel implements Serializable{
     @Persistent
     private long _playDate;
     
+    public VsPlayerModel() {
+        
+    }
+    
     private VsPlayerModel(Builder builder) {
         _vsPlayer = builder._vsPlayer;
         _myCurrentScore = builder._myCurrentScore;
@@ -106,6 +110,15 @@ public class VsPlayerModel implements Serializable{
         return _playDate;
     }
 
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("_id").append("=").append(_id).append("\n");
+        builder.append("_vsPlayer").append("=").append(_vsPlayer).append("\n");
+        builder.append("_myCurrentScore").append("=").append(_myCurrentScore).append("\n");
+        builder.append("_vsPlayerScore").append("=").append(_vsPlayerScore).append("\n");
+        builder.append("_result").append("=").append(_result).append("\n");
+        return builder.toString();
+    }
 
     public static final class Builder {
         private Long _vsPlayer;

@@ -11,15 +11,18 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
+import kr.inamatrix.danguscore.shared.common.StringUtil;
+import kr.inamatrix.danguscore.shared.exceptions.PasswordDoesNotConfirmException;
+
 /**
- * Title: GamerModel.java<br>
- * Description: 게이머 정보 모델<br>
+ * Title: GamerInfoModel.java<br>
+ * Description: 선수 정보를 저장하는 모델 class<br>
  * Copyright: Copyright(c) 2012 Inamatrix ALL Rights Reserved<br>
  * 
  * @author Jonghwa, Lee
  * @version 1.0
- * @created 2012. 1. 27.
- * @modified 2012. 1. 27.
+ * @created 2012. 2. 3.
+ * @modified 2012. 2. 3.
  */
 @PersistenceCapable(identityType=IdentityType.APPLICATION)
 public class GamerInfoModel implements Serializable{
@@ -39,6 +42,9 @@ public class GamerInfoModel implements Serializable{
     private String _password;
     
     @Persistent
+    private String passwordConfirm;
+
+    @Persistent
     private int _score;
     
     @Persistent
@@ -49,6 +55,10 @@ public class GamerInfoModel implements Serializable{
     
     @Persistent
     private VsPlayerModel _vsPlayerTableModel;
+    
+    public GamerInfoModel() {
+        
+    }
     
     /**
      * @param builder
@@ -84,6 +94,13 @@ public class GamerInfoModel implements Serializable{
     }
 
     /**
+     * @return the passwordConfirm
+     */
+    public String getPasswordConfirm() {
+        return passwordConfirm;
+    }
+    
+    /**
      * @return the score
      */
     public int getScore() {
@@ -110,10 +127,22 @@ public class GamerInfoModel implements Serializable{
     public VsPlayerModel getVsPlayerTableModel() {
         return _vsPlayerTableModel;
     }
+    
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("_id").append("=").append(_id).append("\n");
+        builder.append("_name").append("=").append(_name).append("\n");
+        builder.append("_password").append("=").append(_password).append("\n");
+        builder.append("_score").append("=").append(_score).append("\n");
+        builder.append("_email").append("=").append(_email).append("\n");
+        builder.append("_registDate").append("=").append(_registDate).append("\n");
+        return builder.toString();
+    }
 
     public static final class Builder {
         private String _name;
         private String _password;
+        private String _passwordConfirm;
         private int _score;
         private String _email;
         private long _registDate;
@@ -121,6 +150,11 @@ public class GamerInfoModel implements Serializable{
         public Builder(String name, String password) {
             _name = name;
             _password = password;
+        }
+        
+        public Builder setPasswordConfirm(String passwordConfirm) {
+            _passwordConfirm = passwordConfirm;
+            return this;
         }
         
         public Builder setScore(int score) {
@@ -143,7 +177,10 @@ public class GamerInfoModel implements Serializable{
             return this;
         }
         
-        public GamerInfoModel build() {
+        public GamerInfoModel build() throws PasswordDoesNotConfirmException {
+            if (!StringUtil.isEquals(_password, _passwordConfirm) || (_password == null && _passwordConfirm == null)) {
+                throw new PasswordDoesNotConfirmException();
+            }
             return new GamerInfoModel(this);
         }
     }

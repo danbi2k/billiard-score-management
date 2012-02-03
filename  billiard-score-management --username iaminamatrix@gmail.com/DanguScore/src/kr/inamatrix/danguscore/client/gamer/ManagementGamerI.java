@@ -23,5 +23,6 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 public interface ManagementGamerI extends RemoteService {
     ResultI checkIdDuplicate(String id);
     ResultI regiestGamer(GamerInfoModel model);
-    ResultI updateGamer();
+    ResultI updateGamer(GamerInfoModel model);
+    ResultI deleteGamer(GamerInfoModel model);
 }

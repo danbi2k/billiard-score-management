@@ -7,6 +7,7 @@ import kr.inamatrix.danguscore.client.gamer.ManagementGamerI;
 import kr.inamatrix.danguscore.shared.common.ResultI;
 import kr.inamatrix.danguscore.shared.models.GamerInfoModel;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 /**
@@ -30,29 +31,39 @@ public class ManagementGamerC extends RemoteServiceServlet implements Management
      */
     @Override
     public ResultI checkIdDuplicate(String id) {
+        GWT.log("checkIdDuplicate() Start : id = " + id);
         // TODO Auto-generated method stub
         return null;
     }
 
     /* (non-Javadoc)
-     * @see kr.inamatrix.danguscore.client.gamer.ManagementGamerI#regiestGamer(kr.inamatrix.danguscore.models.GamerInfoModel)
+     * @see kr.inamatrix.danguscore.client.gamer.ManagementGamerI#regiestGamer(kr.inamatrix.danguscore.shared.models.GamerInfoModel)
      */
     @Override
     public ResultI regiestGamer(GamerInfoModel model) {
+        GWT.log("regiestGamer() Start : id = " + model);
         // TODO Auto-generated method stub
         return null;
     }
 
     /* (non-Javadoc)
-     * @see kr.inamatrix.danguscore.client.gamer.ManagementGamerI#updateGamer()
+     * @see kr.inamatrix.danguscore.client.gamer.ManagementGamerI#updateGamer(kr.inamatrix.danguscore.shared.models.GamerInfoModel)
      */
     @Override
-    public ResultI updateGamer() {
+    public ResultI updateGamer(GamerInfoModel model) {
+        GWT.log("updateGamer() Start : id = " + model);
         // TODO Auto-generated method stub
         return null;
     }
 
     /* (non-Javadoc)
-     * @see kr.inamatrix.danguscore.client.gamer.ManagementGamerI#updateGamer(kr.inamatrix.danguscore.models.GamerInfoModel)
+     * @see kr.inamatrix.danguscore.client.gamer.ManagementGamerI#deleteGamer(kr.inamatrix.danguscore.shared.models.GamerInfoModel)
      */
+    @Override
+    public ResultI deleteGamer(GamerInfoModel model) {
+        GWT.log("deleteGamer() Start : id = " + model);
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }
