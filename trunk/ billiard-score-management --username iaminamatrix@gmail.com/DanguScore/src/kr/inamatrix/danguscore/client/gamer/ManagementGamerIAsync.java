@@ -23,6 +23,8 @@ public interface ManagementGamerIAsync {
 
     void regiestGamer(GamerInfoModel model, AsyncCallback<ResultI> callback);
 
-    void updateGamer(AsyncCallback<ResultI> callback);
+    void updateGamer(GamerInfoModel model, AsyncCallback<ResultI> callback);
+
+    void deleteGamer(GamerInfoModel model, AsyncCallback<ResultI> callback);
     
 }

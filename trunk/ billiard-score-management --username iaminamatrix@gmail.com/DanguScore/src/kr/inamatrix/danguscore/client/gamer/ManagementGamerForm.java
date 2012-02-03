@@ -5,13 +5,19 @@ package kr.inamatrix.danguscore.client.gamer;
 
 import java.util.logging.Logger;
 
+import kr.inamatrix.danguscore.shared.exceptions.PasswordDoesNotConfirmException;
+import kr.inamatrix.danguscore.shared.exceptions.ScoreIsNotAvailableException;
+import kr.inamatrix.danguscore.shared.models.GamerInfoModel;
+
 import com.extjs.gxt.ui.client.Style.HorizontalAlignment;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.Field;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
+import com.extjs.gxt.ui.client.widget.form.NumberField;
 import com.extjs.gxt.ui.client.widget.form.TextField;
+import com.google.gwt.core.client.GWT;
 
 /**
  * Title: RegistGamerForm.java<br>
@@ -27,20 +33,39 @@ public abstract class ManagementGamerForm extends FormPanel {
     
     private static final Logger logger = Logger.getLogger(ManagementGamerForm.class.getName());
     
+    ManagementGamerDelegate _delegate = new ManagementGamerDelegate();
+    
     private TextField<String> _id;
     private TextField<String> _password;
     private TextField<String> _passwordConfirm;
     private TextField<String> _name;
-    private TextField<String> _score;
+    private NumberField _score;
     private TextField<String> _email;
     
     private Button _cancel;
+    public enum Operation {
+        REGIST("등록"), UPDATE("갱신"), DELETE("삭제");
+        String _title;
+        Operation(String title) {
+            _title = title;
+        }
+        
+        String getTitle(){
+            return _title;
+        }
+    }
     
     ManagementGamerForm() {
-        organizedForm();
+        GWT.log("ManagementGamerForm() start!!");
+        
         setButtonAlign(HorizontalAlignment.CENTER);
         setLabelAlign(LabelAlign.LEFT);
+        setLabelWidth(100);
         setFrame(false);
+        setSize(340, 240);
+        organizedForm();
+        
+        GWT.log("ManagementGamerForm() End!!");
     }
     
     /**
@@ -95,11 +120,12 @@ public abstract class ManagementGamerForm extends FormPanel {
         return _name;
     }
     
-    TextField<String> getScoreField() {
+    NumberField getScoreField() {
         if ( _score == null ) {
-            _score = new TextField<String>();
+            _score = new NumberField();
             _score.setFieldLabel("점 수");
             _score.setAllowBlank(false);
+            _score.setMinLength(3);
         }
         return _score;
     }
@@ -125,13 +151,43 @@ public abstract class ManagementGamerForm extends FormPanel {
         return _cancel;
     }
     
-    /**
-     * 
-     */
-    public static void convertManagementGamerForm() {
-        // TODO Auto-generated method stub
-        
+    @Override
+    protected void beforeRender() {
+        super.beforeRender();
+    }
+    
+    GamerInfoModel getGamerInfo() throws PasswordDoesNotConfirmException, ScoreIsNotAvailableException {
+        GamerInfoModel.Builder builder = new GamerInfoModel.Builder(getIdField().getValue(), getPasswordField().getValue());
+        builder.setPasswordConfirm(getPasswordConfirmField().getValue());
+        builder.setEmail(getEmailField().getValue());
+        try {
+            builder.setScore(getScoreField().getValue().intValue());            
+        } catch (Exception e) {
+            throw new ScoreIsNotAvailableException();
+        }
+        builder.setEmail(getEmailField().getValue());
+        builder.setRegistDate(System.currentTimeMillis());
+        return builder.build();
+    }
+    
+    public ManagementGamerForm createManagementForm(Operation oper) {
+        ManagementGamerForm form = null;
+        switch ( oper ) {
+            case REGIST :
+                form =  new RegistGamerForm();
+                break;
+            case UPDATE :
+                form =  new UpdateGamerForm();
+                break;
+            case DELETE :
+                form =  new DeleteGamerForm();
+                break;
+        }
+        form.setHeading(oper.getTitle());
+        form.setHeaderVisible(true);
+        return form;
     }
     
     abstract Button getOperationButton();
+    abstract void setEditable();
 }

@@ -5,7 +5,8 @@ package kr.inamatrix.danguscore.client.login;
 
 import java.util.logging.Logger;
 
-import kr.inamatrix.danguscore.client.gamer.ManagementGamerForm;
+import kr.inamatrix.danguscore.client.gamer.RegistGamerForm;
+import kr.inamatrix.danguscore.client.main.MainViewport;
 
 import com.extjs.gxt.ui.client.Style.HorizontalAlignment;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
@@ -15,6 +16,7 @@ import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.FormButtonBinding;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.TextField;
+import com.google.gwt.core.client.GWT;
 
 /**
  * Title: LoginWindow.java<br>
@@ -59,7 +61,7 @@ public class LoginServiceForm extends FormPanel {
         setButtonAlign(HorizontalAlignment.CENTER);
         setLabelAlign(LabelAlign.LEFT);
         setFrame(false);
-        setSize(350, 140);
+        setSize(310, 140);
         
         add(getNameTextfield());
         add(getPasswordField());
@@ -129,7 +131,8 @@ public class LoginServiceForm extends FormPanel {
     }
 
     private void processRegistGamer() {
-        ManagementGamerForm.convertManagementGamerForm();
+        GWT.log("processRegistGamer()");
+        MainViewport.getInstance().setView(new RegistGamerForm());
     }
     
     /**
@@ -137,6 +140,7 @@ public class LoginServiceForm extends FormPanel {
      */
     public void showLoginErrorMessage(Throwable caught) {
         // TODO Auto-generated method stub
+        MessageBox.alert("Login", "이름 또는 비밀번호가 틀립니다.", null);
     }
 
     /**

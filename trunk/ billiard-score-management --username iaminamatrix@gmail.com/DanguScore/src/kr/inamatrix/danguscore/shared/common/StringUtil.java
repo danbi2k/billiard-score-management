@@ -25,4 +25,20 @@ public class StringUtil {
         
         return false;
     }
+    
+    public static final boolean isEquals(String str1, String str2) {
+        if (isEmptyString(str1) == isEmptyString(str2)) {
+            return true;
+        }
+        
+        if (!isEmptyString(str1)) {
+            return str1.equals(str2);
+        }
+        
+        if (!isEmptyString(str2)) {
+            return str2.equals(str1); 
+        }
+        
+        return str1.equals(str2);
+    }
 }
