@@ -6,6 +6,7 @@ package kr.inamatrix.danguscore.server.login;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
+import kr.inamatrix.danguscore.client.main.SessionInfo;
 import kr.inamatrix.danguscore.shared.common.DaoUtil;
 import kr.inamatrix.danguscore.shared.common.ResultFactory;
 import kr.inamatrix.danguscore.shared.common.ResultI;
@@ -33,8 +34,9 @@ public class LoginJdoDaoC implements LoginDaoI {
         Query query = pm.newQuery(GamerInfoModel.class);
         query.setFilter("name==\' "+ name + "\' && password==\'"+password+"\'");
         try {
-            result = query.execute() != null ? ResultFactory.createSucessResult(null) : ResultFactory.createFailureResult(null);
-            // TODO : if need a user session, make a user session in here.
+            Object obj = query.execute(); 
+            result = obj != null ? ResultFactory.createSucessResult(null) : ResultFactory.createFailureResult(null);
+            SessionInfo.newInstance((GamerInfoModel)obj);
         } catch (Exception e) {
             result = ResultFactory.createFailureResult(e.getMessage());
         } finally {

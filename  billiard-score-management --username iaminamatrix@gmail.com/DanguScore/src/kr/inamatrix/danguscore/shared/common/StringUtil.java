@@ -18,8 +18,9 @@ public class StringUtil {
         
     }
     
-    public static final boolean isEmptyString(String str) {
-        if (str == null || str.length() == 0 || "".equals(str)) {
+    
+    public static final boolean isEmptyString(Object str) {
+        if (str == null || str.toString().length() == 0 || "".equals(str.toString())) {
             return true;
         }
         

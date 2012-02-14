@@ -20,6 +20,10 @@ public class ValueIsOutOfRangeException extends Exception{
      */
     private static final long serialVersionUID = 1L;
     
+    public ValueIsOutOfRangeException(int min) {
+        super("The minimum must be over " + min);
+    }
+    
     public ValueIsOutOfRangeException(int min, int max) {
         super("The value must be within the range. " + min + "<= value <=" + max);
     }

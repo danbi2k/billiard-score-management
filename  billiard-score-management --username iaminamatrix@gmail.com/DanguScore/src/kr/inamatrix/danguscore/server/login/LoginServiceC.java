@@ -31,12 +31,14 @@ public class LoginServiceC extends RemoteServiceServlet implements LoginServiceI
     
     private LoginJdoDaoC _loginDao = new LoginJdoDaoC();
     
+    public LoginServiceC() {
+    }
     /* (non-Javadoc)
      * @see kr.inamatrix.danguscore.client.login.LoginServiceI#login(java.lang.String, java.lang.String)
      */
     @Override
     public ResultI login(String name, String password) {
-        logger.log(Level.FINE, "login() name = " + name + ", password = " + password);
+        logger.log(Level.INFO, "login() name = " + name + ", password = " + password);
         return _loginDao.login(name, password);
     }
 }
