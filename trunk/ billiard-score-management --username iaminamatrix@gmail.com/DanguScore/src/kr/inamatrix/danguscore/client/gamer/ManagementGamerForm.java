@@ -5,6 +5,10 @@ package kr.inamatrix.danguscore.client.gamer;
 
 import java.util.logging.Logger;
 
+import kr.inamatrix.danguscore.client.login.LoginServiceForm;
+import kr.inamatrix.danguscore.client.main.MainViewport;
+import kr.inamatrix.danguscore.shared.common.StringUtil;
+import kr.inamatrix.danguscore.shared.exceptions.IdIsNotAvailableException;
 import kr.inamatrix.danguscore.shared.exceptions.PasswordDoesNotConfirmException;
 import kr.inamatrix.danguscore.shared.exceptions.ScoreIsNotAvailableException;
 import kr.inamatrix.danguscore.shared.models.GamerInfoModel;
@@ -14,10 +18,10 @@ import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.Field;
+import com.extjs.gxt.ui.client.widget.form.FormButtonBinding;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
 import com.extjs.gxt.ui.client.widget.form.NumberField;
 import com.extjs.gxt.ui.client.widget.form.TextField;
-import com.google.gwt.core.client.GWT;
 
 /**
  * Title: RegistGamerForm.java<br>
@@ -35,7 +39,7 @@ public abstract class ManagementGamerForm extends FormPanel {
     
     ManagementGamerDelegate _delegate = new ManagementGamerDelegate();
     
-    private TextField<String> _id;
+    Field<Object> _id;
     private TextField<String> _password;
     private TextField<String> _passwordConfirm;
     private TextField<String> _name;
@@ -43,6 +47,7 @@ public abstract class ManagementGamerForm extends FormPanel {
     private TextField<String> _email;
     
     private Button _cancel;
+    
     public enum Operation {
         REGIST("등록"), UPDATE("갱신"), DELETE("삭제");
         String _title;
@@ -56,16 +61,19 @@ public abstract class ManagementGamerForm extends FormPanel {
     }
     
     ManagementGamerForm() {
-        GWT.log("ManagementGamerForm() start!!");
+        logger.info("ManagementGamerForm() start!!");
         
         setButtonAlign(HorizontalAlignment.CENTER);
-        setLabelAlign(LabelAlign.LEFT);
-        setLabelWidth(100);
-        setFrame(false);
+        setLabelAlign(LabelAlign.RIGHT);
+        setLabelWidth(90);
+        setFrame(true);
         setSize(340, 240);
         organizedForm();
         
-        GWT.log("ManagementGamerForm() End!!");
+        FormButtonBinding binding = new FormButtonBinding(this);
+        binding.addButton(getOperationButton());
+        
+        logger.info("ManagementGamerForm() End!!");
     }
     
     /**
@@ -82,11 +90,11 @@ public abstract class ManagementGamerForm extends FormPanel {
         addButton(getCancelButton());
     }
     
-    Field<String> getIdField() {
+    Field<Object> getIdField() {
         if ( _id == null ) {
-            _id = new TextField<String>();
+            _id = new TextField<Object>();
             _id.setFieldLabel("아 이 디");
-            _id.setAllowBlank(false);
+            ((TextField<Object>)_id).setAllowBlank(false);
         }
         return _id;
     }
@@ -134,6 +142,7 @@ public abstract class ManagementGamerForm extends FormPanel {
         if ( _email == null ) {
             _email = new TextField<String>();
             _email.setFieldLabel("E-Mail");
+            _email.setAllowBlank(true);
         }
         return _email;
     }
@@ -144,7 +153,8 @@ public abstract class ManagementGamerForm extends FormPanel {
             _cancel.addSelectionListener(new SelectionListener<ButtonEvent>() {
                 @Override
                 public void componentSelected(ButtonEvent ce) {
-                    logger.fine("Cancel clicked.");
+                    logger.info(getClass() + " : Cancel button clicked.");
+                    MainViewport.getInstance().setView(LoginServiceForm.getInstance());
                 }
             });
         }
@@ -156,10 +166,13 @@ public abstract class ManagementGamerForm extends FormPanel {
         super.beforeRender();
     }
     
-    GamerInfoModel getGamerInfo() throws PasswordDoesNotConfirmException, ScoreIsNotAvailableException {
-        GamerInfoModel.Builder builder = new GamerInfoModel.Builder(getIdField().getValue(), getPasswordField().getValue());
+    GamerInfoModel getGamerInfo() throws PasswordDoesNotConfirmException, ScoreIsNotAvailableException, IdIsNotAvailableException {
+        if (StringUtil.isEmptyString(getIdField().getValue())) {
+            throw new IdIsNotAvailableException();
+        }
+        
+        GamerInfoModel.Builder builder = new GamerInfoModel.Builder(getIdField().getValue().toString(), getPasswordField().getValue());
         builder.setPasswordConfirm(getPasswordConfirmField().getValue());
-        builder.setEmail(getEmailField().getValue());
         try {
             builder.setScore(getScoreField().getValue().intValue());            
         } catch (Exception e) {
@@ -184,7 +197,6 @@ public abstract class ManagementGamerForm extends FormPanel {
                 break;
         }
         form.setHeading(oper.getTitle());
-        form.setHeaderVisible(true);
         return form;
     }
     

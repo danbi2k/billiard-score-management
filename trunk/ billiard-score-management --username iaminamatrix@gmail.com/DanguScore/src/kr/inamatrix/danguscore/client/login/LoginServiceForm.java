@@ -60,8 +60,9 @@ public class LoginServiceForm extends FormPanel {
         logger.fine("initialize() start");
         setButtonAlign(HorizontalAlignment.CENTER);
         setLabelAlign(LabelAlign.LEFT);
-        setFrame(false);
-        setSize(310, 140);
+        setFrame(true);
+        setHeading("Login");
+        setSize(320, 140);
         
         add(getNameTextfield());
         add(getPasswordField());
@@ -139,7 +140,6 @@ public class LoginServiceForm extends FormPanel {
      * @param caught
      */
     public void showLoginErrorMessage(Throwable caught) {
-        // TODO Auto-generated method stub
         MessageBox.alert("Login", "이름 또는 비밀번호가 틀립니다.", null);
     }
 

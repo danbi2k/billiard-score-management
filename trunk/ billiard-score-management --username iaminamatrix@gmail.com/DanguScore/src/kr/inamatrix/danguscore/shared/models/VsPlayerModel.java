@@ -48,6 +48,9 @@ public class VsPlayerModel implements Serializable{
     private GameResult _result;
     
     @Persistent
+    private int _fine;
+    
+    @Persistent
     private long _playDate;
     
     public VsPlayerModel() {
@@ -60,6 +63,7 @@ public class VsPlayerModel implements Serializable{
         _vsPlayerScore = builder._vsPlayerScore;
         _result = builder._result;
         _playDate = builder._playDate;
+        _fine = builder._fine;
     }
     
     
@@ -101,8 +105,14 @@ public class VsPlayerModel implements Serializable{
     public GameResult getResult() {
         return _result;
     }
-
-
+    
+    /**
+     * @return the fine
+     */
+    public int getFine() {
+        return _fine;
+    }
+    
     /**
      * @return the gameDate
      */
@@ -117,6 +127,7 @@ public class VsPlayerModel implements Serializable{
         builder.append("_myCurrentScore").append("=").append(_myCurrentScore).append("\n");
         builder.append("_vsPlayerScore").append("=").append(_vsPlayerScore).append("\n");
         builder.append("_result").append("=").append(_result).append("\n");
+        builder.append("_fine").append("=").append(_fine).append("\n");
         return builder.toString();
     }
 
@@ -124,6 +135,7 @@ public class VsPlayerModel implements Serializable{
         private Long _vsPlayer;
         private int _myCurrentScore;
         private int _vsPlayerScore;
+        private int _fine;
         private GameResult _result;
         private long _playDate;
         
@@ -140,6 +152,11 @@ public class VsPlayerModel implements Serializable{
         
         public Builder setGameDate(long playDate) {
             _playDate = playDate;
+            return this;
+        }
+        
+        public Builder setFine(int fine) {
+            _fine = fine;
             return this;
         }
         

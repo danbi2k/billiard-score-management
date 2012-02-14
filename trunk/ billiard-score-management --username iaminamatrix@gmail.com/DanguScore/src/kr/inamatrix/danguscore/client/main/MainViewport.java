@@ -5,6 +5,7 @@ package kr.inamatrix.danguscore.client.main;
 
 import kr.inamatrix.danguscore.client.login.LoginServiceForm;
 
+import com.extjs.gxt.ui.client.event.Events;
 import com.extjs.gxt.ui.client.widget.Component;
 import com.extjs.gxt.ui.client.widget.Viewport;
 import com.extjs.gxt.ui.client.widget.layout.CenterLayout;
@@ -39,10 +40,24 @@ public class MainViewport extends Viewport {
         removeAll();
         add(w);
         w.setVisible(true);
-        afterRender();
+        fireEvent(Events.Resize);
+        
+//        fireEvent(Events.OnChange);
+//        fireEvent(Events.Refresh);
+//        fireEvent(Events.Render);
+//        fireEvent(Events.Ready);
+//        fireEvent(Events.ResizeStart);
+//        fireEvent(Events.ResizeEnd);
+//        fireEvent(Events.Restore);
+//        fireEvent(Events.Scroll);
+//        fireEvent(Events.Show);
+//        fireEvent(Events.StateChange);
+//        fireEvent(Events.Valid);
+//        fireEvent(Events.Update);
+//        fireEvent(Events.ViewReady);
     }
     
-    public void changeView(Widget w) {
-        
-    }
+//    public void changeView(Widget w) {
+//        
+//    }
 }

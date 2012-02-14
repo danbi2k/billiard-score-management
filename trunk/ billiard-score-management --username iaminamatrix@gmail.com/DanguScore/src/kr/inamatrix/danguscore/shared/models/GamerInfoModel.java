@@ -12,7 +12,9 @@ import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 import kr.inamatrix.danguscore.shared.common.StringUtil;
+import kr.inamatrix.danguscore.shared.exceptions.IdIsNotAvailableException;
 import kr.inamatrix.danguscore.shared.exceptions.PasswordDoesNotConfirmException;
+import kr.inamatrix.danguscore.shared.exceptions.ScoreIsNotAvailableException;
 
 /**
  * Title: GamerInfoModel.java<br>
@@ -51,6 +53,9 @@ public class GamerInfoModel implements Serializable{
     private String _email;
 
     @Persistent
+    private boolean _admin;
+    
+    @Persistent
     private long _registDate;
     
     @Persistent
@@ -68,6 +73,7 @@ public class GamerInfoModel implements Serializable{
         _password = builder._password;
         _score = builder._score;
         _email = builder._email;
+        _admin = builder._admin;
         _registDate = builder._registDate;
         _vsPlayerTableModel = builder._vsPlayerTableModel;
     }
@@ -115,6 +121,13 @@ public class GamerInfoModel implements Serializable{
     }
 
     /**
+     * @return the admin
+     */
+    public boolean isAdmin() {
+        return _admin;
+    }
+    
+    /**
      * @return the registDate
      */
     public long getRegistDate() {
@@ -130,11 +143,13 @@ public class GamerInfoModel implements Serializable{
     
     public String toString() {
         StringBuilder builder = new StringBuilder();
+        builder.append("=============").append(" GamerInfoModel ").append("=============\n");
         builder.append("_id").append("=").append(_id).append("\n");
         builder.append("_name").append("=").append(_name).append("\n");
         builder.append("_password").append("=").append(_password).append("\n");
         builder.append("_score").append("=").append(_score).append("\n");
         builder.append("_email").append("=").append(_email).append("\n");
+        builder.append("_admin").append("=").append(_admin).append("\n");
         builder.append("_registDate").append("=").append(_registDate).append("\n");
         return builder.toString();
     }
@@ -145,8 +160,13 @@ public class GamerInfoModel implements Serializable{
         private String _passwordConfirm;
         private int _score;
         private String _email;
+        private boolean _admin;
         private long _registDate;
         private VsPlayerModel _vsPlayerTableModel;
+        public Builder() {
+            
+        }
+        
         public Builder(String name, String password) {
             _name = name;
             _password = password;
@@ -172,14 +192,23 @@ public class GamerInfoModel implements Serializable{
             return this;
         }
         
+        public Builder setAdmin(boolean isAdmin) {
+            _admin = isAdmin;
+            return this;
+        }
+        
         public Builder setVsPlayerTableModel(VsPlayerModel vsPlayerTableModel) {
             _vsPlayerTableModel = vsPlayerTableModel;
             return this;
         }
         
-        public GamerInfoModel build() throws PasswordDoesNotConfirmException {
-            if (!StringUtil.isEquals(_password, _passwordConfirm) || (_password == null && _passwordConfirm == null)) {
+        public GamerInfoModel build() throws PasswordDoesNotConfirmException, ScoreIsNotAvailableException, IdIsNotAvailableException {
+            if (StringUtil.isEmptyString(_name)) {
+                throw new IdIsNotAvailableException();
+            } else if (_password == null || _passwordConfirm == null || !StringUtil.isEquals(_password, _passwordConfirm)) {
                 throw new PasswordDoesNotConfirmException();
+            } else if (_score < 0 || _score > 5000) {
+                throw new ScoreIsNotAvailableException(); 
             }
             return new GamerInfoModel(this);
         }

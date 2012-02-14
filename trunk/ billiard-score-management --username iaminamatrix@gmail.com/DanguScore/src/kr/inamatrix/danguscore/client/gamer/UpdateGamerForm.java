@@ -3,6 +3,9 @@
  */
 package kr.inamatrix.danguscore.client.gamer;
 
+import java.util.logging.Logger;
+
+import kr.inamatrix.danguscore.shared.exceptions.IdIsNotAvailableException;
 import kr.inamatrix.danguscore.shared.exceptions.PasswordDoesNotConfirmException;
 import kr.inamatrix.danguscore.shared.exceptions.ScoreIsNotAvailableException;
 
@@ -10,7 +13,6 @@ import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.widget.MessageBox;
 import com.extjs.gxt.ui.client.widget.button.Button;
-import com.google.gwt.core.client.GWT;
 
 /**
  * Title: UpdateGamerForm.java<br>
@@ -23,20 +25,23 @@ import com.google.gwt.core.client.GWT;
  * @modified 2012. 1. 30.
  */
 public class UpdateGamerForm extends ManagementGamerForm {
-
+    private static final Logger logger = Logger.getLogger(UpdateGamerForm.class.getName());
+    
     Button getOperationButton() {
         Button button = new Button("갱신");
         button.addSelectionListener(new SelectionListener<ButtonEvent>() {
             
             @Override
             public void componentSelected(ButtonEvent ce) {
-                GWT.log("Update Button clicked !!");
+                logger.finest("Update Button clicked !!");
                 try {
                     _delegate.updateGamer(getGamerInfo());
                 } catch ( PasswordDoesNotConfirmException e ) {
                     MessageBox.alert(getHeading(), "동일한 비밀번호를 입력하여야 합니다. ", null);
                 } catch ( ScoreIsNotAvailableException s) {
-                    MessageBox.alert(getHeading(), "점수를 입력해주세요. ", null);
+                    MessageBox.alert(getHeading(), "점수가 잘못되었습니다. 점수의 범위는 0부터 5000사이입니다.", null);
+                } catch ( IdIsNotAvailableException e ) {
+                    MessageBox.alert(getHeading(), "ID가 옳바르지 않습니다..", null);
                 }
             }
         });
